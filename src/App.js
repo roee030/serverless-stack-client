@@ -8,6 +8,7 @@ import { AppContext } from './libs/contextLib';
 import React, { useState, useEffect } from 'react';
 import { Auth } from 'aws-amplify';
 import { useHistory } from 'react-router-dom';
+import { onError } from './libs/errorLib';
 function App() {
 	const history = useHistory();
 	const [isAuthenticated, userHasAuthenticated] = useState(false);
@@ -22,7 +23,7 @@ function App() {
 			userHasAuthenticated(true);
 		} catch (e) {
 			if (e !== 'No current user') {
-				alert(e);
+				onError(e);
 			}
 		}
 
